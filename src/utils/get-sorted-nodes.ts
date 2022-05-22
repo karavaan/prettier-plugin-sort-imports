@@ -54,6 +54,10 @@ export const getSortedNodes: GetSortedNodes = (nodes, options) => {
     for (const group of importOrder) {
         const groupNodes = importOrderGroups[group];
 
+        if (group.length === 0) {
+            finalNodes.push(newLineNode);
+        }
+
         if (groupNodes.length === 0) continue;
 
         const sortedInsideGroup = getSortedNodesGroup(groupNodes, {

@@ -13,11 +13,11 @@ export const getImportNodesMatchedGroup = (
 ) => {
     const groupWithRegExp = importOrder.map((group) => ({
         group,
-        regExp: new RegExp(group),
+        regExp: group.length === 0 ? null : new RegExp(group),
     }));
 
     for (const { group, regExp } of groupWithRegExp) {
-        const matched = node.source.value.match(regExp) !== null;
+        const matched = regExp && node.source.value.match(regExp) !== null;
         if (matched) return group;
     }
 
